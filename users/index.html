@@ -1,0 +1,276 @@
+<?php include 'validate.php'; ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>URBox</title>
+  <link rel="stylesheet" href="../css/users.css">
+	<link rel="stylesheet" href="../css/animate.css">
+  <link rel="stylesheet" href="/bootstrap-3.3.7-dist/css/datepicker.min.css">
+  <link rel="stylesheet" href="../bootstrap-3.3.7-dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../bootstrap-3.3.7-dist/css/datepicker3.min.css">
+	<link rel="stylesheet" href="../bootstrap-3.3.7-dist/css/bootstrap-theme.min.css">
+  <link rel="stylesheet" href="../font-awesome-4.7.0/css/font-awesome.min.css">
+  <script type="text/javascript" src="../js/jquery-3.2.1.js"></script>
+  <script type="text/javascript" src="../js/users.js"></script>
+  <script type="text/javascript" src="../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+  <!-- <script type="text/javascript" src="../bootstrap-3.3.7-dist/js/bootstrap-datepicker.min.js"></script> -->
+</head>
+<body onscroll="myFunction()">
+
+  <?php
+  //echo "<h1 style="position:absolute;top:70%;z-index:1000;width:100vw;">".$row['DAYS']."</h1>";
+  $servername = "localhost";
+  $username = "root";
+  $password = "";
+  $dbname = "URBox";
+
+  // Create connection
+  $conn = new mysqli($servername, $username, $password, $dbname);
+  // Check connection
+  if ($conn->connect_error) {
+      die("Connection failed: " . $conn->connect_error);
+  }
+
+  // sql to delete a record
+  $sql = "call Later('".$_COOKIE['user']."',@p0)";
+
+  if ($conn->query($sql) === TRUE) {
+      //echo "Record deleted successfully";
+      $sql = "SELECT @p0 AS DAYS";
+      $result = $conn->query($sql);
+
+      if ($result->num_rows > 0) {
+          // output data of each row
+          while($row = $result->fetch_assoc()) {
+              //echo "id: " . $row["DD"];//. " - Name: " . $row["firstname"]. " " . $row["lastname"]. "<br>";
+              //echo "<h1 style='position:absolute;top:70%;z-index:1000;width:100vw;'>".$row['DAYS']."</h1>";
+              if($row['DAYS']>30){
+                echo '<div class="alert alert-info alert-dismissible" role="alert" style="position:absolute;top:0%;z-index:100;width:100vw;">
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <strong>WARNING!!</strong> You Have Not Updated Your Security Information For A While.<a href="profile/security.html" class="alert-link">Update Now!!</a>
+                </div>';
+              }
+          }
+      } else {
+          echo "0 results";
+      }
+  } else {
+      echo "Error deleting record: " . $conn->error;
+  }
+
+  $conn->close();
+  ?>
+
+
+  <script type="text/javascript">
+    console.log(document.cookie);
+  </script>
+  <div class="header">
+    <img class="img-responsive" src="../img/banner.jpg" alt="" style='width=100vw;'>
+    <div class="banner text-center"><i class="fa fa-stack-overflow fa-fw" aria-hidden="true"></i>URBox</div>
+  </div>
+
+  <!--  Navigation Bar -->
+
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <!-- <a class="navbar-brand" href="#">Brand</a> -->
+        <a class="navbar-brand" href="../index.html"><i class="fa fa-stack-overflow fa-1x" aria-hidden="true">&nbsp; <text id="head">URBox</text></i></a>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li class="active"><a class="btn btn-lg" href="#"><i class="fa fa-home fa-fw" aria-hidden="true"></i>&nbsp; Home</a></li>
+          <!-- <li><a class="btn btn-lg" href="#"><i class="fa fa-info-circle fa-fw" aria-hidden="true"></i>&nbsp; About</a></li> -->
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a class="btn btn-lg" role="button" data-toggle="modal" data-target="#modal"><i class="fa fa-cloud-upload fa-fw" aria-hidden="true"></i>&nbsp; Upload Files</a></li>
+          <li class="dropdown">
+            <a href="#" class="btn btn-lg dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user-circle-o fa-fw" aria-hidden="true"></i>&nbsp; Hi, <?php echo $_COOKIE['user']; ?> <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="profile/profile.php">Your Profile</a></li>
+              <li><a href="profile/info.html">Change Information</a></li>
+              <li><a href="profile/security.html">Security Information</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="logout.php">Logout</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div><!-- /.navbar-collapse <i class="fa fa-user-circle-o fa-fw" aria-hidden="true"></i>-->
+    </div><!-- /.container-fluid -->
+  </nav>
+
+  <div class="modal fade"  id="modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content"   style="width:400px;">
+        <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title"><i class="fa fa-cloud-upload fa-fw" aria-hidden="true"></i>&nbsp; Upload Files <small>(Upload Limit 5 Mb)</small></h4>
+      </div>
+        <!-- <div class="well col-md-8"   style="width:400px;"> -->
+        <div class="modal-body">
+          <form action="upload.php" method="POST" enctype="multipart/form-data" class="form-inline">
+            <input class="col-md-9 btn btn-info" type="file" name="file">&nbsp;
+            <input class="btn btn-primary" type="submit" name="submit" value="Upload">
+          </form>
+
+        </div>
+        <!-- </div> -->
+      </div>
+    </div>
+  </div>
+  <!-- <div class="collapse" id="collapse" style="float:right;position:relative;">
+    <div class="well col-md-4"  style="float:right;width:400px;">
+      <form action="upload.php" method="post" class="form-inline">
+        <input class="col-md-9 btn btn-info" type="file" name="file" value="">&nbsp;
+        <input class="btn btn-primary" type="submit" name="submit" value="Upload">
+      </form>
+    </div>
+  </div> -->
+  <!-- Content -->
+
+  <div class="content">
+    <div style="height:10vh;">.</div>
+    <div class="form-control" id="container">
+
+      <!-- Nav tabs -->
+      <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a href="#files" aria-controls="files" role="tab" data-toggle="tab">All Files</a></li>
+        <li role="presentation"><a href="#pictures" aria-controls="pictures" role="tab" data-toggle="tab">Pictures</a></li>
+        <li role="presentation"><a href="#video" aria-controls="video" role="tab" data-toggle="tab">Videos</a></li>
+        <li role="presentation"><a href="#music" aria-controls="music" role="tab" data-toggle="tab">Audios</a></li>
+      </ul>
+      <!-- Tab panes -->
+      <div class="tab-content" >
+        <div role="tabpanel" class="tab-pane active" id="files" style="overflow:hidden;">
+          <br>
+          <div class="table-responsive" style="overflow:hidden;">
+            <table class="table table-hover" style="overflow:hidden;">
+              <thead>
+                <tr>
+                  <th style="width:80px;"></th>
+                  <th>Name</th>
+                  <th style="width:150px;">Size</th>
+                  <th style="width:150px;">Type</th>
+                  <th style="width:150px;"></th>
+                  <th style="width:150px;"></th>
+                  <th style="width:150px;"></th>
+                </tr>
+              </thead>
+              <tbody id="file-tbody">
+              </tbody>
+            </table>
+          </div>
+          <div class="file-nothing">
+            <img src="../img/empty.jpg" id="empty" alt="nothing" class="img-responsive" style="display:block;margin:auto;">
+          </div>
+        </div>
+        <?php include 'files.php'; ?>
+        <div role="tabpanel" class="tab-pane" id="pictures">
+          <div class="wrapper" id="image-wrapper">
+          </div>
+          <div class="image-nothing">
+            <img src="../img/empty.jpg" id="empty" alt="nothing" class="img-responsive" style="display:block;margin:auto;">
+          </div>
+        </div>
+        <?php include 'pics.php'; ?>
+
+        <div role="tabpanel" class="tab-pane" id="video">
+          <div class="wrapper"  id="video-wrapper">
+
+          </div>
+          <div class="video-nothing">
+            <img src="../img/empty.jpg" id="empty" alt="nothing" class="img-responsive" style="display:block;margin:auto;">
+          </div>
+        </div>
+        <?php include 'vids.php'; ?>
+        <div role="tabpanel" class="tab-pane" id="music">
+          <div class="table-responsive">
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th style="width:80px;"></th>
+                  <th>Name</th>
+                  <th>Audio</th>
+                  <th style="width:150px;">Size</th>
+                  <th style="width:150px;"></th>
+                  <th style="width:150px;"></th>
+                </tr>
+              </thead>
+              <tbody id="audio-tbody">
+              </tbody>
+            </table>
+          </div>
+          <div class="audio-nothing">
+            <img src="../img/empty.jpg" id="empty" alt="nothing" class="img-responsive" style="display:block;margin:auto;">
+          </div>
+        </div>
+        <?php include 'audio.php'; ?>
+      </div>
+  </div>
+  <div style="height:5vh;">.</div>
+  <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="imageModal">
+  <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-body">
+        <img src="" alt="" class="img-responsive center-block" id="img" style="max-height:90vh;">
+      </div>
+  </div>
+</div>
+
+<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="videoModal">
+<div class="modal-dialog modal-lg" role="document">
+    <div class="modal-body">
+      <video class="center-block" src="" autoplay style="max-height:90wh;" controls>
+
+      </video>
+    </div>
+</div>
+</div>
+
+<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="deleteModal">
+<div class="modal-dialog modal-lg" role="document">
+    <div class="modal-body">
+      Are You Sure?<button class="btn btn-danger" type="button" name="button">DELETE</button>
+    </div>
+</div>
+</div>
+
+<script type="text/javascript">
+$('#imageModal').on('show.bs.modal', function (event) {
+var button = $(event.relatedTarget) // Button that triggered the modal
+var src = button.data('whatever')
+var modal = $(this)
+//modal.find('.modal-title').text('New message to ' + recipient)
+modal.find('#img').attr('src',src);
+});
+$('#videoModal').on('show.bs.modal', function (event) {
+var button = $(event.relatedTarget) // Button that triggered the modal
+var src = button.data('whatever')
+var modal = $(this)
+//modal.find('.modal-title').text('New message to ' + recipient)
+modal.find('video').attr('src',src);
+});
+$('#fileModal').on('show.bs.modal', function (event) {
+var button = $(event.relatedTarget) // Button that triggered the modal
+var src = button.data('whatever')
+var modal = $(this)
+//modal.find('.modal-title').text('New message to ' + recipient)
+modal.find('embed').attr('src',src);
+});
+</script>
+<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#fileModal" data-whatever="../img/banner.jpg">Open modal for @mdo</button> -->
+</div>
+</body>
+</html>

@@ -1,0 +1,104 @@
+html {
+  overflow-x: hidden;
+}
+
+/*ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    padding-left: 10px;
+    padding-right: 10px;
+    overflow: hidden;
+    background-color: #333;
+
+}
+
+li {
+    float: left;
+
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    height: auto;
+    font-size: 30px;
+}
+
+li a:hover:not(.active) {
+    background-color: #5cb85c;
+}
+*/
+.active {
+    background-color: #337ab7;
+}
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.sticky + .content {
+  padding-top: 70px;
+}
+
+
+.header {
+  position: relative;
+}
+.navi {
+  position: absolute;
+  top:35%;
+  left: 35%;
+  font-size: 100px;
+  font-family: 'Unica One';
+}
+
+#head {
+  font-family: 'Unica One';
+  font-size: 22px;
+}
+
+.content{
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+
+#content{
+  min-height: 400px;
+  padding: 30px;
+  background-color: #fefbf7;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.24);
+}
+
+#content img {
+  margin-left: auto;
+	margin-right: auto;
+	display: block;
+}
+#butto input {
+  margin-left: auto;
+	margin-right: auto;
+	display: block;
+}
+
+/* latin-ext */
+@font-face {
+  font-family: 'Unica One';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Unica One'), local('UnicaOne-Regular'), url(https://fonts.gstatic.com/s/unicaone/v5/Zxq4PdUSc3GE41eti2ZndBJtnKITppOI_IvcXXDNrsc.woff2) format('woff2');
+  unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Unica One';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Unica One'), local('UnicaOne-Regular'), url(https://fonts.gstatic.com/s/unicaone/v5/z3VYemEbD7zsQFQLG6g3SltXRa8TVwTICgirnJhmVJw.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+}

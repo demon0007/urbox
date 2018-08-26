@@ -1,0 +1,176 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>URBox</title>
+  <link rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" href="css/animate.css">
+	<link rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="bootstrap-3.3.7-dist/css/datepicker.min.css">
+  <link rel="stylesheet" href="bootstrap-3.3.7-dist/css/datepicker3.min.css">
+	<link rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap-theme.min.css">
+  <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">
+  <script type="text/javascript" src="js/jquery-3.2.1.js"></script>
+  <script type="text/javascript" src="js/main.js"></script>
+  <script type="text/javascript" src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="bootstrap-3.3.7-dist/js/bootstrap-datepicker.min.js"></script>
+</head>
+<body onscroll="myFunction()">
+
+  <!-- Header -->
+
+  <div class="header">
+    <img class="img-responsive" src="img/banner.jpg" alt="" style='width=100vw;'>
+    <div class="navi text-center"><i class="fa fa-stack-overflow fa-fw" aria-hidden="true"></i>URBox</div>
+  </div>
+
+  <!--  Navigation Bar -->
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <!-- <a class="navbar-brand" href="#">Brand</a> -->
+        <a class="navbar-brand" href="index.html"><i class="fa fa-stack-overflow fa-1x" aria-hidden="true">&nbsp; <text id="head">URBox</text></i></a>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li><a class="btn btn-lg" href="#"><i class="fa fa-home fa-fw" aria-hidden="true"></i>&nbsp; Home</a></li>
+          <!-- <li><a class="btn btn-lg" href="#"><i class="fa fa-info-circle fa-fw" aria-hidden="true"></i>&nbsp; About</a></li> -->
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <!-- <li><a class="btn btn-lg" role="button" data-toggle="modal" data-target="#modal"><i class="fa fa-cloud-upload fa-fw" aria-hidden="true"></i>&nbsp; Upload Files</a></li> -->
+          <li><a class="btn btn-lg" role="button" href="index.html"><i class="fa fa-user-o fa-fw" aria-hidden="true"></i>&nbsp; Sign In</a></li>
+        </ul>
+      </div><!-- /.navbar-collapse <i class="fa fa-user-circle-o fa-fw" aria-hidden="true"></i>-->
+    </div><!-- /.container-fluid -->
+  </nav>
+
+  <br><br>
+
+
+  <div class="content">
+    <form action="register.php" method="post"  enctype="multipart/form-data">
+    <div class="row">
+      <div class="col-md-1"></div>
+      <div class="col-md-6" id="content">
+        <div class="row form-group">
+          <div class="col-md-2"></div>
+          <div class="col-md-3"><label for="username">UserName :</label></div>
+          <div class="col-md-5"><input class="form-control" type="text" name="username" placeholder="Enter Your Desired Username" id="username"></div>
+          <div class="col-md-2"></div>
+        </div>
+        <div class="row form-group">
+          <div class="col-md-2"></div>
+          <div class="col-md-3"><label for="firstname">First Name :</label></div>
+          <div class="col-md-5"><input class="form-control" type="text" name="firstname" placeholder="Enter Your First Name" id="firstname"></div>
+          <div class="col-md-2"></div>
+        </div>
+        <div class="row form-group">
+          <div class="col-md-2"></div>
+          <div class="col-md-3"><label for="lastname">Last Name :</label></div>
+          <div class="col-md-5"><input class="form-control" type="text" name="lastname" placeholder="Enter Your Last Name" id="lastname"></div>
+          <div class="col-md-2"></div>
+        </div>
+        <div class="row form-group">
+          <div class="col-md-2"></div>
+          <div class="col-md-3"><label for="email">Email :</label></div>
+          <div class="col-md-5">
+            <input class="form-control" type="text" name="email" placeholder="Enter Your Email" id="email">
+          </div>
+          <div class="col-md-2"></div>
+        </div>
+        <div class="row form-group">
+          <div class="col-md-2"></div>
+          <div class="col-md-3"><label for="Sex">Sex :</label></div>
+          <div class="col-md-2"><label for="sex" class="radio-inline"><input type="radio" value="Male" id="sex" name="sex">Male</label></div>
+          <div class="col-md-2"><label for="sex" class="radio-inline"><input type="radio" value="Female" id="sex" name="sex">Female</label></div>
+          <div class="col-md-3"></div>
+        </div>
+        <div class="row form-group">
+          <div class="col-md-2"></div>
+          <div class="col-md-3"><label for="age">Age :</label></div>
+          <div class="col-md-2"><input class="form-control" type="text" name="age" placeholder="Age" id="age"></div>
+          <div class="col-md-5"></div>
+        </div>
+        <div class="row form-group">
+          <div class="col-md-2"></div>
+          <div class="col-md-3"><label for="Name">Date Of Birth :</label></div>
+          <div class="col-md-5">
+            <div class="input-group date" data-provide="datepicker" id="datetimepicker9">
+              <input type="text" class="form-control" name="dob">
+              <div class="input-group-addon"><span class="glyphicon glyphicon-th"></span></div>
+            </div>
+          </div>
+          <div class="col-md-2"></div>
+        </div>
+      </div>
+      <div class="col-md-4" id="content">
+        <label for="profile">Upload Your Profile Picture :</label>
+        <img src="img/generic-user.png" alt="" class="img-responsive img-circle" id="blah" style="width:256px;height:256px;">
+        <br>
+        <input class="form-control" type="file" name="file" value="img/generic-user.png" id="profile" onchange="readURL(this);">
+      </div>
+      <div class="col-md-1"></div>
+    </div>
+    <br>
+    <div class="col-md-12" id="butto"><input class="btn btn-primary" type="submit" name="submit" value="Submit"></div>
+    </form>
+  </div>
+  <!--<button type="button" name="button" data-toggle="modal" data-target="#myModal">modal</button>-->
+  <div class="modal fade" tabindex="-1" role="dialog" id="myModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Last Step</h4>
+      </div>
+      <form action="ready.php" method="post">
+      <div class="modal-body">
+
+          <div class="form-group" id="pass">
+            <label for="password">Password :</label>
+            <input type="password" class="form-control" id="password" name="password" placeholder="Enter Your Password" onfocusout="myFocus()">
+          </div>
+          <div class="form-group" id="rpass">
+            <label for="rpassword">Password :</label>
+            <input type="password" class="form-control" id="rpassword" name="rpassword" placeholder="Re-Enter Your Password" onfocusout="myFocus()">
+          </div>
+          <div class="form-group">
+            <label for="hint">Hint :</label>
+            <input type="text" class="form-control" id="hint" name="hint" placeholder="A Hint For The Password">
+          </div>
+          <div class="form-group">
+            <label for="question">Question :</label>
+            <input type="text" class="form-control" id="question" name="question" placeholder="Write a Question?">
+          </div>
+          <div class="form-group">
+            <label for="answer">Answer :</label>
+            <input type="text" class="form-control" id="answer" name="answer" placeholder="Answer The Question">
+          </div>
+      </div>
+      <div class="modal-footer">
+        <!-- <input type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+        <input type="submit" class="btn btn-primary" id="subbut">
+      </div>
+    </form>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+  <br><br><br><br>
+
+  <?php if(isset($_COOKIE['register'])){
+    echo '<script type="text/javascript">$(document).ready(function(){$("#myModal").modal("show");$("#myModal").on("hidden.bs.modal", function () {$("#myModal").modal("show");});});</script>';
+  }?>
+</body>
+</html>
