@@ -1,8 +1,8 @@
 # URBox - Server Side Storage Facility
 
 Project by:
-	* Priyesh Shrivastava
-	* Shubham Sarvesh
+	- Priyesh Shrivastava
+	- Shubham Sarvesh
 
 This is a Project we made in our B.E. - 3rd Year as a Course Mini Project. The objective of the project was to make a full fledged website that uses DBMS concepts.
 
